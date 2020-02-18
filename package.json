@@ -1,0 +1,22 @@
+{
+  "name": "spyfallbot",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/siolinm/SpyfallBot.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/siolinm/SpyfallBot/issues"
+  },
+  "homepage": "https://github.com/siolinm/SpyfallBot#readme",
+  "dependencies": {
+    "node-telegram-bot-api": "^0.40.0"
+  }
+}
