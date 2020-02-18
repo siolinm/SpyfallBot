@@ -4,6 +4,17 @@ const TOKEN = `956467020:AAFP588cd4rpbIEL0nANalcanEqAqyXnufg`
 
 const bot = new TelegramBot( TOKEN, { polling: true } )
 
-bot.on('new_chat_members', (msg) => {
-    bot.sendMessage(msg.chat.id, `Olá ${msg.from.first_name}, bem vindo ao Devs SC!! Conte-nos um pouco sobre você, com o que trabalha e onde, se possivel é claro`)
+bot.onText(/Luciano/, (msg) => {
+    console.log(msg);
+    bot.sendMessage(msg.chat.id, "Ta puto o garoto")
 })
+//eae galera
+//acho q ja comecou aqui o contest
+//fala ai: 
+// n to conseguindo salvar um arquivo aqui
+// ta dando cota excedida, no cec
+// Fala pro Bento 
+//eu q sou jumento
+//lixeira tava cheia
+// Foda né
+
