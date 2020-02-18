@@ -8,6 +8,7 @@ bot.onText(/Luciano/, (msg) => {
     console.log(msg);
     bot.sendMessage(msg.chat.id, "Ta puto o garoto")
 })
+
 //eae galera
 //acho q ja comecou aqui o contest
 //fala ai: 
