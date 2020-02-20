@@ -5,4 +5,5 @@ Escola-Professor-Aluno-Diretor-Coordenador-Zelador-Aluno aplicado-Aluno levado-P
 Shopping-Vendendor-Segurança-Ladrão-Cliente-Taxista
 Banco-Ladrão-Segurança-Cliente-Gerente-Caixa-Caixa eletrônico
 Universidade-Filósofo-Engenheiro-Arquiteto-Cientista-Reitor-Professor de sociologia-Aluno de economia-Aluno de administração-Professor de psicologia-Aluno indo trancar o curso-Calouro de engenharia de aquicultura-Formando de Física
-
+Zoológico-Leão-Faxineiro-Criança perdida-Vendendor de lanches-Visitante-Segurança
+Parque de diversões-Mecânico(conserta brinquedos)-Segurança-Visitante-Vendendor de lanches-Criança perdida-Algodão doce-Montanha Russa
