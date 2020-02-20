@@ -277,7 +277,7 @@ function votation(msg)
         {
             numvotos++;
             if(espiao.indexOf(indicePlayerVoted) != -1) 
-                ++;
+                numvotos++;
         }
     }
     if (numvotos == (number_players - num_spy)*num_spy && votacaoAndamento )
@@ -291,7 +291,7 @@ function votation(msg)
         {
             if(votosespiao[lui] >= (number_players-1)/2)
             {
-                spyCatched++;
+            spyCatched++;
                 lusa += '\n' + player[espiao[lui]].username;
             }
             else
