@@ -1,4 +1,8 @@
-Brasil-jogador de futebol-surfista-participante de bbb
-Portugal-bigode-pescador-policial
-Bar-bebado-bartender-bebum
-Zoologico-jacara-paca-perdido-tamandua
+Hotel-Recepcionista-Concierge(pessoa responsável por carregar malas)-Dono-Turista-Gerente-Mochileiro-Zelador
+Chiqueiro-Galinha-Pintinho-Ovo-Raposa
+Austrália-Coala-Preguiça-Guia-Orrintorrinco-Aborígene-Veleiro-Guarda florestal
+Escola-Professor-Aluno-Diretor-Coordenador-Zelador-Aluno aplicado-Aluno levado-Professor temporário
+Shopping-Vendendor-Segurança-Ladrão-Cliente-Taxista
+Banco-Ladrão-Segurança-Cliente-Gerente-Caixa-Caixa eletrônico
+Universidade-Filósofo-Engenheiro-Arquiteto-Cientista-Reitor-Professor de sociologia-Aluno de economia-Aluno de administração-Professor de psicologia-Aluno indo trancar o curso-Calouro de engenharia de aquicultura-Formando de Física
+
