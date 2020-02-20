@@ -16,14 +16,14 @@ let num_spy = 1;
 let espiao = [];
 let escolhido = -1;
 let numvotos = 0;
-let votosespiao = 0;
+let votosespiao = [];
 let votacaoAndamento = 1;
 /*
     -1 se não houve o comando /startSpyFall ainda.
     0 
 */
 let match_started = -1;
-
+let end_discussion = 0;
 
 class Player{  
     constructor(){
@@ -46,14 +46,17 @@ function sendCard(){
     let lugar = places[indice];
     escolhido = indice;
     
-    for(var auxi = 0; auxi < num_spy; aux++)
-    {
-        var auxx = Math.random() * (number_players);
+    for(var auxi = 0; auxi < num_spy; auxi++){
+        var auxx = Math.floor(Math.random() * (number_players));
+        
         while (player[auxx].spy)
-            auxx = Math.random() * (number_players);
+            auxx = Math.floor(Math.random() * (number_players));
+        
         espiao[auxi] = Math.floor(auxx);
+        votosespiao[auxi] = 0;
+        player[auxx].spy = 1;
     }
-   
+
     for(let i = 0; i < number_players; i++){
         var resistencia = jobs[indice][Math.floor(Math.random()*jobs[indice].length)];
         var indice_spy = espiao.indexOf(i);
@@ -81,6 +84,7 @@ function startSpyfall(text){
         player[i-1].username = start_str[i];
         player[i-1].is_confirmed = 0;
     }
+    
     console.log(player);
 
     bot.sendMessage(host_chat_id, 'Players send a message to me in private with only /participate!');
@@ -129,15 +133,22 @@ function central(msg){
     const end_pattern = /\/endSpyFall/g;
     const dash_pattern = /^\//g;
     const add_place_pattern = /\/addPlace/g;
-    
+    const stop_discussion_pattern = /\/stopDiscussion/g;
+
     console.log(msg);
     bot.on("polling_error", (err) => console.log(err));    
 
     if((match = end_pattern.exec(msg.text)) != null && match_started != -1 && is_in(msg.from.username, player) != -1){
         bot.sendMessage(msg.chat.id, "OI");
         match_started = -1;
+        time_now = 0;
+        num_spy = 1;
+        escolhido = -1;
+        numvotos = 0;
+        votacaoAndamento = 1;
     }
     else if((match = start_pattern.exec(msg.text)) != null && match_started == -1){
+        bot.sendMessage(msg.chat.id, "Carai");
         host_chat_id = msg.chat.id;
         startSpyfall(msg.text);
         match_started = 0;
@@ -151,6 +162,10 @@ function central(msg){
 
         sendCard();
         startDiscussion(host_chat_id);
+    }
+    else if((match = stop_discussion_pattern.exec(msg.text)) != null && match_started == 2){
+        stopDiscussion();
+        match_started = 3;    
     }
 
     if(match_started == 0){
@@ -166,9 +181,9 @@ function central(msg){
         
     }
     */
-    
-    
-    votation(msg);
+
+    if(match_started == 3)
+        votation(msg);
 }
 
 
@@ -201,18 +216,19 @@ function startDiscussion(chatId){
     timer = setInterval(() => {        
         time_now += 1;
         
-        if(time_now != 10)    
+        if(time_now != 10 && acabou)    
             bot.sendMessage(chatId, "Faltam " + (10-time_now).toString() + " minutos.");
         else{            
-            bot.sendMessage(chatId, "O tempo acabou!");
             stopDiscussion();
         } 
-    }, 30000);
+    }, 60000);
 }
 
 function stopDiscussion(){
     clearInterval(timer);
+    bot.sendMessage(host_chat_id, "O tempo acabou!");
     candidate();
+    match_started = 3;
 }
 
 /******************************/
@@ -226,10 +242,10 @@ function candidate()
     })
     console.log(barralugar);
 
-    for(var i = 0;i < number_players; i++)
+    for(var i = 0; i < number_players; i++)
     {
-        console.log(i+' '+espiao[0]);
-        if(i == espiao[0])
+        console.log(i + ' ' + espiao[0]);
+        if(espiao.indexOf(i) != -1)
         {
             let lug = '';
             places.forEach(e =>{
@@ -245,8 +261,7 @@ function candidate()
             for(var luaux = 0; luaux < number_players; luaux++)
             {
                 let luba = player[luaux].username;
-                if(luaux != i)
-                {
+                if(luaux != i){
                     lus += '\/' + luba.slice(1)+'\n';
                 }
             }
@@ -277,9 +292,11 @@ function votation(msg)
         {
             numvotos++;
             if(espiao.indexOf(indicePlayerVoted) != -1) 
-                numvotos++;
+                votosespiao[espiao.indexOf(indicePlayerVoted)]++;
         }
     }
+    bot.sendMessage(host_chat_id, "numvotos: " + numvotos + " votacaoAndamento: " + votacaoAndamento);
+
     if (numvotos == (number_players - num_spy)*num_spy && votacaoAndamento )
     {    
         votacaoAndamento = 0;
@@ -287,32 +304,38 @@ function votation(msg)
         let lusa = '';
         let lusb = '';
 
+        console.log(espiao);
+    
         for(var lui = 0; lui < num_spy; lui++)
         {
             if(votosespiao[lui] >= (number_players-1)/2)
             {
-            spyCatched++;
+                spyCatched++;
                 lusa += '\n' + player[espiao[lui]].username;
             }
             else
                 lusb += '\n' + player[espiao[lui]].username;
         }
-        if(spyCatched == 1)   
+        
+        bot.sendMessage(host_chat_id, "spyCatched" + spyCatched);
+        if(spyCatched == 1){   
             if(num_spy == 1)
                 bot.sendMessage(host_chat_id, "O espião foi capturado" + lusa);
             else
                 bot.sendMessage(host_chat_id, "Somente um espião foi capturado" + lusa);
-        else if (spyCatched > 1)
+        }
+        else if (spyCatched > 1){
             if (spyCatched == num_spy)
                 bot.sendMessage(host_chat_id, "Os espiões foram encontrados: " + lusa);
             else
                 bot.sendMessage(host_chat_id, "Alguns espiões foram encontrados: " + lusa);
-        if(spyCatched < num_spy)
-        {
+        }
+        
+        if(spyCatched < num_spy){
             if(num_spy - spyCatched == 1)
-                bot.sendMessage(host_chat_id, "O espião " + lusb.slice(1) + "conseguiu/ fugir");
+                bot.sendMessage(host_chat_id, "O espião " + lusb.slice(1) + " conseguiu fugir");
             else   
-                bot.sendMessage(host_chat_id, "Estes espiõs escaparam: " + lusa);
+                bot.sendMessage(host_chat_id, "Estes espiões escaparam: " + lusa);
         }
     }
 }
