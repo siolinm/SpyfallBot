@@ -259,7 +259,7 @@ function votation(msg)
 {
     let indicePlayer = is_in(msg.from.username, player);
 
-    if( indicePlayer == espiao[0] )
+    if( espiao.indexOf(indicePlayer) != -1 )
     {
         let indiceLugar = places.lastIndexOf(msg.text.slice(1))
         
@@ -271,28 +271,33 @@ function votation(msg)
     }
     else if(indicePlayer != -1)
     {
-        let lindicePlayerVoted = is_in(msg.text.slice(1), player);
+        let indicePlayerVoted = is_in(msg.text.slice(1), player);
 
-        if(lindicePlayerVoted != -1)
+        if(indicePlayerVoted != -1)
         {
             numvotos++;
-            if(lindicePlayerVoted == espiao[0])
-                votosespiao[0]++;
+            if(espiao.indexOf(indicePlayerVoted) != -1) 
+                ++;
         }
     }
-    if (numvotos == (number_players - num_spy)*num_spy && votacaoAndamento)
+    if (numvotos == (number_players - num_spy)*num_spy && votacaoAndamento )
     {    
         votacaoAndamento = 0;
         let spyCatched = 0;
         let lusa = '';
+        let lusb = '';
 
         for(var lui = 0; lui < num_spy; lui++)
+        {
             if(votosespiao[lui] >= (number_players-1)/2)
-                {
-                    spyCatched++;
-                    lusa += '\n' + player[espiao[lui]].username;
-                }
-        if(spyCatched == 1)
+            {
+                spyCatched++;
+                lusa += '\n' + player[espiao[lui]].username;
+            }
+            else
+                lusb += '\n' + player[espiao[lui]].username;
+        }
+        if(spyCatched == 1)   
             if(num_spy == 1)
                 bot.sendMessage(host_chat_id, "O espião foi capturado" + lusa);
             else
@@ -302,6 +307,12 @@ function votation(msg)
                 bot.sendMessage(host_chat_id, "Os espiões foram encontrados: " + lusa);
             else
                 bot.sendMessage(host_chat_id, "Alguns espiões foram encontrados: " + lusa);
-                
+        if(spyCatched < num_spy)
+        {
+            if(num_spy - spyCatched == 1)
+                bot.sendMessage(host_chat_id, "O espião " + lusb.slice(1) + "conseguiu/ fugir");
+            else   
+                bot.sendMessage(host_chat_id, "Estes espiõs escaparam: " + lusa);
+        }
     }
 }
