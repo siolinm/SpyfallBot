@@ -6,7 +6,7 @@ Shopping-Vendendor-Segurança-Ladrão-Cliente-Taxista
 Banco-Ladrão-Segurança-Cliente-Gerente-Caixa-Caixa eletrônico
 Universidade-Filósofo-Engenheiro-Arquiteto-Cientista-Reitor-Professor de sociologia-Aluno de economia-Aluno de administração-Professor de psicologia-Aluno indo trancar o curso-Calouro de engenharia de aquicultura-Formando de Física
 Zoologico-Leão-Faxineiro-Criança perdida-Vendendor de lanches-Visitante-Segurança
-ParqueDeDiversões-Mecânico(conserta brinquedos)-Segurança-Visitante-Vendendor de lanches-Criança perdida-Algodão doce-Montanha Russa
+ParqueDeDiversoes-Mecânico(conserta brinquedos)-Segurança-Visitante-Vendendor de lanches-Criança perdida-Algodão doce-Montanha Russa
 Dentista-Dentista-Hiroshi-Paciente-Recepcionista-Paciente Velho-Paciente Criança
 CEPE-Hiroshi no Tênis-Atleta-BCC no Futão-Hiroshi na Calistenia-Porteiro-Atleta
 BCC-Iróxi-Hiroshi-Irineu-Siolindo-Davi-Luciano-Gigantesco-Tubarão-Mazetti
@@ -16,7 +16,8 @@ Youtube-Felipe Neto-Nando Moura-Whindersson-Zangado-MaratonUSP-PewDiePie-Smosh-N
 ParqueIbirapuera-Corredor-Cachorro-Skatista-Ciclista-Turista-Criança Perdida
 CCSL-Caseiro-Aluno de grupo de extensão-Professor-Recepcionista-Segurança
 Metro-Velho lento-Estudante-Vendedor-Trabalhador-Criança Perdida-Segurança-Maquinista
-Escola-Aluno do Fundão-Aluno da frente-Hiroshi-Professor-Inspetor-DiretorPraia-Turista-Salva Vidas-Surfista-Criança Perdida-Vendedor-Turista
+Escola-Aluno do Fundão-Aluno da frente-Hiroshi-Professor-Inspetor-Diretor
+Praia-Turista-Salva Vidas-Surfista-Criança Perdida-Vendedor-Turista
 Teatro-Espectador-Ator-Figurinista-Vendedor-Segurança
 Cassino-Dealer(Cara que da as cartas)-Segurança-Apostador-Viciado
 Circo-Palhaço-Espectador-Criança perdida-Mágico-Vendedor de Comida

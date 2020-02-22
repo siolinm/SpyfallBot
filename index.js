@@ -18,6 +18,7 @@ let escolhido = -1;
 let numvotos = 0;
 let votosespiao = [];
 let votacaoAndamento = 1;
+let acabou = 0;
 /*
     -1 se não houve o comando /startspyfall ainda.
     0 
@@ -146,6 +147,7 @@ function central(msg) {
         escolhido = -1;
         numvotos = 0;
         votacaoAndamento = 1;
+        acabou = 0;
     }
     else if ((match = start_pattern.exec(msg.text)) != null && match_started == -1) {
         bot.sendMessage(msg.chat.id, "Carai");
@@ -165,6 +167,7 @@ function central(msg) {
     }
     else if ((match = stop_discussion_pattern.exec(msg.text)) != null && match_started == 2) {
         stopDiscussion();
+        acabou = 1;
         match_started = 3;
     }
 
@@ -216,7 +219,7 @@ function startDiscussion(chatId) {
     timer = setInterval(() => {
         time_now += 1;
 
-        if (time_now != 10 && acabou)
+        if (time_now != 10 /*&& acabou == 1*/)
             bot.sendMessage(chatId, "Faltam " + (10 - time_now).toString() + " minutos.");
         else {
             stopDiscussion();
@@ -286,7 +289,6 @@ function votation(msg) {
                 votosespiao[espiao.indexOf(indicePlayerVoted)]++;
         }
     }
-    bot.sendMessage(host_chat_id, "numvotos: " + numvotos + " votacaoAndamento: " + votacaoAndamento);
 
     if (numvotos == (number_players - num_spy) * num_spy && votacaoAndamento) {
         votacaoAndamento = 0;
