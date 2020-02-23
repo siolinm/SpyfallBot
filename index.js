@@ -94,7 +94,7 @@ function startSpyfall(text) {
 /*Checa se o player que enviou a mensagem está na lista do host*/
 function check_player(msg) {
     for (let i = 0; i < number_players; i++) {
-        if (player[i].username == '@' + msg.from.username) {
+        if (player[i].is_confirmed != 1 && player[i].username == '@' + msg.from.username) {
             player[i].is_confirmed = 1;
             bot.sendMessage(host_chat_id, player[i].username + ' confirmou');
             player[i].chat_id = msg.chat.id;
@@ -126,6 +126,17 @@ function is_in(text, v) {
     return -1;
 }
 
+/*Reinicializar todas as variaiveis globais*/
+function restart(){
+    match_started = -1;
+    time_now = 0;
+    num_spy = 1;
+    escolhido = -1;
+    numvotos = 0;
+    votacaoAndamento = 1;
+    acabou = 0;
+}
+
 /*Função que controla a porra toda*/
 function central(msg) {
     const start_pattern = /\/startspyfall/g;
@@ -141,13 +152,7 @@ function central(msg) {
 
     if ((match = end_pattern.exec(msg.text)) != null && match_started != -1 && is_in(msg.from.username, player) != -1) {
         bot.sendMessage(msg.chat.id, "OI");
-        match_started = -1;
-        time_now = 0;
-        num_spy = 1;
-        escolhido = -1;
-        numvotos = 0;
-        votacaoAndamento = 1;
-        acabou = 0;
+        restart();
     }
     else if ((match = start_pattern.exec(msg.text)) != null && match_started == -1) {
         bot.sendMessage(msg.chat.id, "Carai");
